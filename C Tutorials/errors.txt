@@ -1,0 +1,8 @@
+1.//Write code in C language to find out check if given character is digit or not without using any Conditional functions
+
+    char ch;
+    printf("Please Enter a charecter:");
+    scanf("%c", &ch);
+    printf("The given character is a digit(%d) ",(ch>=1) && (ch<=100) );
+
+2.Write a program to print the smallest number of two.
