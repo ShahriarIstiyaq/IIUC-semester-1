@@ -1,0 +1,88 @@
+#include<stdio.h>
+struct STD
+{
+    int roll;
+    double cgpa;
+    char name[30];
+};
+typedef struct STD Student;
+
+int n;
+Student s[100];
+void read()
+{
+    int i;
+    FILE* fp;
+    fp = fopen("info.txt", "r");
+    if(fp == 0) {
+        printf("Error openning file\n");
+        return 0;
+    }
+
+    fscanf(fp, "%d", &n);
+    for(i = 0; i < n; i++) {
+        fscanf(fp, "%s", s[i].name);
+        fscanf(fp, "%d", &s[i].roll);
+        fscanf(fp, "%lf", &s[i].cgpa);
+    }
+
+    fclose(fp);
+}
+void write()
+{
+    int i;
+    FILE *fp;
+    fp = fopen("info.txt", "w");
+    if(fp == 0) {
+        printf("Error openning file\n");
+        return 0;
+    }
+
+    fprintf(fp, "%d\n", n);
+    for(i = 0; i < n; i++) {
+        fprintf(fp, "%s\n", s[i].name);
+        fprintf(fp, "%d\n", s[i].roll);
+        fprintf(fp, "%.2lf\n", s[i].cgpa);
+    }
+    fclose(fp);
+}
+int menu()
+{
+    int x;
+    printf("-------Menu---------\n");
+    printf("1. Insert\n");
+    printf("2. Delete by roll\n");
+    printf("3. Show All\n");
+    printf("4. Exit\n");
+    printf("\nEnter your choice: ");
+    scanf("%d", &x);
+    return x;
+}
+void Delete(int pos)
+{
+    
+    read();
+    int i;
+    for(i = pos; i < n - 1; i++) {
+        s[i] = s[i + 1];
+    }
+    n--;
+    write();
+}
+int main()
+{
+    int x;
+    do {
+        x = menu();
+        if(x == 2) {
+            Delete();
+        }
+
+
+    } while(x != 4);
+
+
+
+
+    return 0;
+}
