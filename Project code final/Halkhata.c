@@ -758,13 +758,13 @@ void show_note()
 
 void note_page() /// note page
 {
+    hidecursor();
     int position = 1;
     int keyPressed = 0;
 
     while (keyPressed != 13)
         {
 
-        system("cls");
 
         gotoxy(50,9);
         printf("*********************************************************************************");
@@ -1695,6 +1695,8 @@ void aboutUs()
     gotoxy(55, 22);
     printf(">>>Press any key to go back<<<");
     getch();
+
+    system("cls");
 
     main_page();
 }
